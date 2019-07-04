@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.028879745602463952 -0.9533295050243918 -0.3005475255993381 3.324294450264417
-  position -0.09880271666331282 0.5673862128275967 -0.818401368161712
+  orientation -0.16637093028575575 -0.9195161034765683 -0.35610510948752305 2.2835951328666377
+  position -3.7279265134992965 2.011888324604269 -0.21867321974478315
 }
 TexturedBackground {
 }
@@ -12,8 +12,8 @@ TexturedBackgroundLight {
 Floor {
 }
 Robot {
-  translation -0.05511759991373979 0.07385649017747987 0.005765180628466553
-  rotation 0.0017961575308767111 0.9920698408772524 0.12567499608079372 0.028874397401134025
+  translation -2.587419952001231 0.07385654948736252 0.6150969034390344
+  rotation 0.0018124552029296357 0.9999981756026195 0.0006031563396558688 2.500484175247367
   children [
     DEF DEF_SH_BODY Group {
       children [
@@ -46,20 +46,24 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 0.4243369830596586
+        position 659.7056290747264
         axis 0 0 1
         anchor 0.05 0 0.065
       }
       device [
         RotationalMotor {
           name "motor_right"
-          maxVelocity 524
-          maxTorque 0.03
+          maxVelocity 52.35
+          maxTorque 0.5931
+        }
+        PositionSensor {
+          name "position_right"
+          resolution 0.00523598
         }
       ]
       endPoint Solid {
         translation 0.05 0 0.065
-        rotation 0.9565970771911498 0.20606105630458188 0.20606036247660345 1.6151581394353332
+        rotation -0.9997922706856187 0.014412093464201981 0.014412044937256757 4.712177862388477
         children [
           Shape {
             appearance DEF ColorRueda PBRAppearance {
@@ -76,24 +80,30 @@ Robot {
         boundingObject USE Rueda1
         physics Physics {
         }
+        linearVelocity 0.0001155477356751146 -1.9483829211052103e-07 6.754706574265502e-05
+        angularVelocity 0.0013746052116800542 -0.001033416113870575 -0.0018447475436903084
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 0.7564747639659494
+        position 776.638918714809
         axis 0 0 1
         anchor 0.05 0 -0.065
       }
       device [
         RotationalMotor {
           name "motor_left"
-          maxVelocity 524
-          maxTorque 0.03
+          maxVelocity 52.35
+          maxTorque 0.5931
+        }
+        PositionSensor {
+          name "position_left"
+          resolution 0.005235983
         }
       ]
       endPoint Solid {
         translation 0.05 0 -0.065
-        rotation 0.8717745381602398 0.34641735143569813 0.3464161850141773 1.707595455914904
+        rotation 0.23740316299197417 -0.6868926100691369 -0.6868902972337103 2.675417902605246
         children [
           Shape {
             appearance USE ColorRueda
@@ -104,10 +114,36 @@ Robot {
         boundingObject USE Rueda1
         physics Physics {
         }
+        linearVelocity 7.885276227929908e-06 1.3987752357700002e-08 -1.2819921951997653e-05
+        angularVelocity -0.00032734189988152095 -0.0010334224521382856 0.00043594759956088803
       }
+    }
+    DistanceSensor {
+      translation -0.125 0 0
+      rotation 0 1 0 3.1415926439999997
+      children [
+        Shape {
+          appearance USE ColorRueda
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "distance_sensor"
+      lookupTable [
+        0 0 0
+        0.02 0 0
+        5 1660 0
+      ]
+      numberOfRays 2
+      aperture 1.5712
+      resolution 1
     }
   ]
   boundingObject USE DEF_SH_BODY
   physics Physics {
   }
+  controller "crazybot"
+  linearVelocity 2.9913582377060855e-05 5.535607382879064e-08 6.999265801865636e-05
+  angularVelocity -3.037456851023842e-06 -0.0010334653290436301 1.3307293887668724e-06
 }
